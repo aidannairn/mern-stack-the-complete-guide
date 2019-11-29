@@ -5,6 +5,7 @@ import Layout from '../components/_App/Layout'
 import { redirectUser } from '../utils/auth'
 import baseUrl from '../utils/baseUrl'
 import axios from 'axios'
+import Router from 'next/router'
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -46,6 +47,17 @@ class MyApp extends App {
       }
     }
     return { pageProps }
+  }
+
+  componentDidMount() {
+    window.addEventListener('storage', this.syncLogout)
+  }
+
+  syncLogout = event => {
+    if (event.key === 'logout') {
+      console.log('Logged out from storage.')
+      Router.push('/login')
+    }
   }
 
   render() {

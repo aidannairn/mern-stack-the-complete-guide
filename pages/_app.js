@@ -1,4 +1,4 @@
-import { parseCookies } from 'nookies'
+import { parseCookies, destroyCookie } from 'nookies'
 
 import App from 'next/app'
 import Layout from '../components/_App/Layout'
@@ -31,6 +31,10 @@ class MyApp extends App {
         pageProps.user = user
       } catch (error) {
         console.error('error getting current user', error)
+        // 1) Throw out invalid token.
+        destroyCookie(ctx, 'token')
+        // 2) Redirect to login.
+        redirectUser(ctx, '/login')
       }
     }
     return { pageProps }

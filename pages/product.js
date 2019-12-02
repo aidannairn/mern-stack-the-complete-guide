@@ -7,7 +7,7 @@ import ProductAttributes from '../components/Product/ProductAttributes'
 function Product({ product, user }) {
   return (
     <>
-      <ProductSummary {...product} />
+      <ProductSummary user={user} {...product} />
       <ProductAttributes user={user} {...product} />
     </>
   )

@@ -21,7 +21,7 @@ export default async (req, res) => {
       })
     res.status(200).json({ orders })
   } catch (error) {
-    console.log(error)
+    console.error(error)
     res.status(403).send('Please login again.')
   }
 }
